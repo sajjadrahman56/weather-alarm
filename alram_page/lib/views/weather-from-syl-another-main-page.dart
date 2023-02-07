@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../model/weather_clint.dart';
-import '../weather-views-widgtes/additonal_info.dart';
-import '../model/weather_model.dart';
 import 'package:get/get.dart';
 
+import '../model/weather_clint.dart';
+import '../model/weather_model.dart';
+import '../weather-views-widgtes/additonal_info.dart';
 import '../weather-views-widgtes/current_weather_get.dart';
 
 // ignore: camel_case_types
