@@ -18,8 +18,25 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: DistrictGridPage(),
+      home: DistrictGridPage(), // ImageTestBest(),
       debugShowCheckedModeBanner: false,
     );
+  }
+}
+
+class ImageTestBest extends StatelessWidget {
+  const ImageTestBest({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+        child: Center(
+      child: Image.asset(
+        'assets/sajjad34.jpg',
+        fit: BoxFit.fitWidth,
+        height: 220,
+        width: 220,
+      ),
+    ));
   }
 }

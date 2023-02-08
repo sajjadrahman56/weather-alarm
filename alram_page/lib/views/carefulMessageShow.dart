@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:get/get.dart';
@@ -16,20 +18,22 @@ class CarefullRulesPage extends StatefulWidget {
 }
 
 class _CarefullRulesPageState extends State<CarefullRulesPage> {
-  dynamic data = Get.arguments;
+  int data = int.parse(Get.arguments);
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      body: SingleChildScrollView(child: ClearSky800()),
+      body: SingleChildScrollView(child: SelectFromData(data)),
     ));
   }
 }
 
-Widget SelectFromData(var data) {
+Widget SelectFromData(int data) {
   if (data == 800) {
     return ClearSky800();
+  } else if (data > 800 && data <= 850) {
+    return overCast801();
   } else
     return Thundersome800();
 }
@@ -191,7 +195,7 @@ Widget Thundersome800() {
         ),
         Container(
           height: 300,
-          width: 340,
+          width: 350,
           color: Color.fromARGB(255, 11, 230, 186),
           child: Column(
             children: [
@@ -211,7 +215,7 @@ Widget Thundersome800() {
                   Icon(Icons.add_alert_outlined,
                       color: Color.fromARGB(255, 27, 233, 8)),
                   Text(
-                    " important to stay indoors & avoid outdoor activities",
+                    " important to stay indoors & avoid outdoor\n\tactivities",
                     style: fontSize14,
                   )
                 ],
@@ -296,6 +300,177 @@ Widget Thundersome800() {
   );
 }
 
+Widget overCast801() {
+  return SafeArea(
+    child: Center(
+      child: Column(children: [
+        SizedBox(
+          height: 100,
+        ),
+        Container(
+          height: 300,
+          child: OverCastImage(),
+        ),
+        SizedBox(
+          height: 30,
+        ),
+        Container(
+          height: 330,
+          width: 350,
+          color: Color.fromARGB(255, 11, 230, 186),
+          child: Column(
+            children: [
+              Divider(
+                height: 25,
+              ),
+              Text(
+                "Weather is overcast & typically Cloudy \n\t\t\tand Dull",
+                style: fontSize19,
+              ),
+              Divider(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Icon(Icons.add_alert_outlined,
+                      color: Color.fromARGB(255, 233, 221, 10)),
+                  Text(
+                    " Depending on personal preferences \n\t\t\t activities",
+                    style: fontSize14,
+                  )
+                ],
+              ),
+              Divider(),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Icon(Icons.add_alert_outlined,
+                      color: Color.fromARGB(255, 233, 221, 10)),
+                  Text(
+                    " You might follow ",
+                    style: fontSize14,
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 50,
+                  ),
+                  Icon(
+                    Icons.label_important_sharp,
+                    color: Colors.pink[700],
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    "Bring a light jacket or umbrella",
+                    style: fontSize14,
+                  )
+                ],
+              ),
+              Divider(),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 50,
+                  ),
+                  Icon(
+                    Icons.label_important_sharp,
+                    color: Colors.pink[700],
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    " Wear sunglasses to protect \n\t\t\tfrom the glare of the clouds",
+                    style: fontSize14,
+                  )
+                ],
+              ),
+              Divider(), //
+              Row(
+                children: [
+                  SizedBox(
+                    width: 50,
+                  ),
+                  Icon(
+                    Icons.label_important_sharp,
+                    color: Colors.pink[700],
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    " moody atmosphere and take the \n\t\t\topportunity for reflection",
+                    style: fontSize14,
+                  )
+                ],
+              ),
+              Divider(),
+            ],
+          ),
+        ),
+      ]),
+    ),
+  );
+}
+
+Widget OverCastImage() {
+  return CarouselSlider(
+    items: [
+      //1st Image of Slider
+      Image.asset(
+        'assets/cn.jpg',
+        fit: BoxFit.fill,
+        height: 220,
+        width: 220,
+      ),
+      Image.asset(
+        'assets/sajjad34.jpg',
+        fit: BoxFit.cover,
+        height: 220,
+        width: 220,
+      ),
+      Image.asset(
+        'assets/overcast-2.jpg',
+        fit: BoxFit.cover,
+        height: 220,
+        width: 220,
+      ),
+      Image.asset(
+        'pouring-rain.gif',
+        fit: BoxFit.cover,
+        height: 220,
+        width: 220,
+      ),
+
+      //2nd Image of Slider
+    ],
+
+    //Slider Container properties
+    options: CarouselOptions(
+      height: 180.0,
+      enlargeCenterPage: true,
+      autoPlay: true,
+      aspectRatio: 16 / 9,
+      autoPlayCurve: Curves.fastOutSlowIn,
+      enableInfiniteScroll: true,
+      autoPlayAnimationDuration: Duration(milliseconds: 800),
+      viewportFraction: 0.8,
+    ),
+  );
+}
+
 Widget import() {
   return ListView(
     children: [
@@ -353,7 +528,9 @@ Widget import() {
     ],
   );
 }
-  
+
+
+
 
 /*
     Thunderstorms (200 to 232): 
@@ -384,5 +561,12 @@ Widget import() {
      When skies are clear, it's generally safe to engage in outdoor activities, 
      but it's still important to take precautions such as wearing sunblock 
      and staying hydrated.
+
+     If the weather is overcast, it is typically cloudy and dull. Depending on personal preferences and activities planned, one might consider the following options:
+
+    Bring a light jacket or umbrella in case of occasional rain
+    Wear sunglasses to protect from the glare of the clouds
+    Find indoor activities or plan for indoor entertainment
+    Enjoy the peaceful, moody atmosphere and take the opportunity for reflection or quiet time.
 
 */
