@@ -2,7 +2,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:weather_determine/weather-parts/views/weather-from-syl.dart';
 
 import '../views/copy-main.dart';
 

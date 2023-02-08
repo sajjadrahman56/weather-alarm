@@ -1,44 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:weather_determine/weather-parts/weather-views-widgtes/current_weather_get.dart';
-import 'package:weather_determine/weather-parts/model/weather_clint.dart';
+import '../weather-views-widgtes/current_weather_get.dart';
 
-import '../weather-views-widgtes/additonal_info.dart';
+import '../model/weather_clint.dart';
 import '../model/weather_model.dart';
-import 'package:get/get.dart';
-
-import 'carefulMessageShow.dart';
+import 'additonal_info.dart';
 
 // ignore: camel_case_types
-class copyMainFile extends StatefulWidget {
-  const copyMainFile({super.key});
+class main_page_doctor_code extends StatefulWidget {
+  const main_page_doctor_code({super.key});
 
   @override
-  State<copyMainFile> createState() => _copyMainFileState();
+  State<main_page_doctor_code> createState() => _main_page_doctor_codeState();
 }
 
 // ignore: camel_case_types
-class _copyMainFileState extends State<copyMainFile> {
-  List<String> argss = Get.arguments;
-  var lat, lon;
-
+class _main_page_doctor_codeState extends State<main_page_doctor_code> {
+  // now lets test if everything is working
+  // we call api in the hare working
   WeatherAPiClinet client = WeatherAPiClinet();
+  // ALhamdullilah everything is working now
+  //but we will use a better method to call api
+  //FutureBuilder
 
-  Weather? data;
   @override
   void initState() {
     super.initState();
-    setState(() {
-      lat = argss[0];
-      lon = argss[1];
-      getData();
-    });
-    // client.getCurrentWeather("24.894930", "91.868706");
-    client.getCurrentWeather("$lat", "$lon");
+    client.getCurrentWeather("24.894930", "91.868706");
   }
 
+  Weather? data;
   // ignore: non_constant_identifier_names
   Future<void> getData() async {
-    data = await client.getCurrentWeather("$lat", "$lon");
+    data = await client.getCurrentWeather("24.894930", "91.868706");
   }
 
   @override
@@ -49,7 +42,7 @@ class _copyMainFileState extends State<copyMainFile> {
         backgroundColor: const Color(0xFFf9f9f9),
         elevation: 0.0,
         title: const Text(
-          "Live Weather",
+          "Weather app test ",
           style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
@@ -72,20 +65,15 @@ class _copyMainFileState extends State<copyMainFile> {
                   const SizedBox(
                     height: 30,
                   ),
-                  const Text("Additional information about Weather ",
+                  const Text("Additional weather information  ",
                       style: TextStyle(fontSize: 21)),
-                  const Divider(
-                    height: 10,
-                  ),
+                  const Divider(),
                   additionalInformation(
                       "${data!.wind}",
                       "${data!.humidity}",
                       "${data!.pressure}",
                       "${data!.feels_like}",
                       "${data!.id}"),
-
-                  clickMe("${data!.id}")
-
                   // now API Connections Established
                 ]);
           } else if (snapshot.connectionState == ConnectionState.waiting) {
@@ -102,18 +90,4 @@ class _copyMainFileState extends State<copyMainFile> {
       ),
     );
   }
-}
-
-Widget clickMe(dynamic data) {
-  return Container(
-    height: 80,
-    width: 250,
-    child: ElevatedButton(
-      child: Text("Click For Safety"),
-      onPressed: () {
-        print(" i am here ${data}");
-        Get.to(() => CarefullRulesPage(), arguments: data);
-      },
-    ),
-  );
 }
