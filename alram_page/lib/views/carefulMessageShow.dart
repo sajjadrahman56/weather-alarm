@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:get/get.dart';
@@ -24,21 +22,22 @@ class _CarefullRulesPageState extends State<CarefullRulesPage> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      body: SingleChildScrollView(child: SelectFromData(data)),
+      body: SingleChildScrollView(child: selectFromData(data)),
     ));
   }
 }
 
-Widget SelectFromData(int data) {
+Widget selectFromData(int data) {
   if (data == 800) {
-    return ClearSky800();
+    return clearSky800();
   } else if (data > 800 && data <= 850) {
     return overCast801();
-  } else
-    return Thundersome800();
+  } else {
+    return thunderSome800();
+  }
 }
 
-Widget ClearSky800() {
+Widget clearSky800() {
   return SafeArea(
     child: Center(
       child: Column(children: [
@@ -46,9 +45,9 @@ Widget ClearSky800() {
           height: 100,
         ),
         Container(
-          height: 200,
-          width: 265,
-          child: import(),
+          height: 250,
+          width: 350,
+          child: clearSkyImage(),
         ),
         SizedBox(
           height: 30,
@@ -178,7 +177,7 @@ Widget ClearSky800() {
   );
 }
 
-Widget Thundersome800() {
+Widget thunderSome800() {
   return SafeArea(
     child: Center(
       child: Column(children: [
@@ -186,9 +185,9 @@ Widget Thundersome800() {
           height: 100,
         ),
         Container(
-          height: 200,
-          width: 265,
-          child: import(),
+          height: 250,
+          width: 350,
+          child: thunderSomeImage(),
         ),
         SizedBox(
           height: 30,
@@ -308,7 +307,8 @@ Widget overCast801() {
           height: 100,
         ),
         Container(
-          height: 300,
+          height: 250,
+          width: 350,
           child: OverCastImage(),
         ),
         SizedBox(
@@ -426,111 +426,57 @@ Widget overCast801() {
 }
 
 Widget OverCastImage() {
-  return CarouselSlider(
-    items: [
-      //1st Image of Slider
-      Image.asset(
-        'assets/cn.jpg',
-        fit: BoxFit.fill,
-        height: 220,
-        width: 220,
-      ),
-      Image.asset(
-        'assets/sajjad34.jpg',
-        fit: BoxFit.cover,
-        height: 220,
-        width: 220,
-      ),
-      Image.asset(
-        'assets/overcast-2.jpg',
-        fit: BoxFit.cover,
-        height: 220,
-        width: 220,
-      ),
-      Image.asset(
-        'pouring-rain.gif',
-        fit: BoxFit.cover,
-        height: 220,
-        width: 220,
-      ),
+  return CarouselSlider(items: [
+    silderImage('assets/overcast-image/overcast-1.jpg'),
+    silderImage('assets/overcast-image/overcast-2.jpg'),
+    silderImage('assets/overcast-image/overcast-3.jpg'),
+    silderImage('assets/overcast-image/overcast-4.jpg'),
+    silderImage('assets/overcast-image/overcast-5.jpg'),
+  ], options: _options());
+}
 
-      //2nd Image of Slider
-    ],
+//thundesome-image
+//clear-image
+Widget clearSkyImage() {
+  return CarouselSlider(items: [
+    silderImage('assets/clear-image/clear-1.png'),
+    silderImage('assets/clear-image/clear-2.jpg'),
+    silderImage('assets/clear-image/clear-3.png'),
+  ], options: _options());
+}
 
-    //Slider Container properties
-    options: CarouselOptions(
-      height: 180.0,
-      enlargeCenterPage: true,
-      autoPlay: true,
-      aspectRatio: 16 / 9,
-      autoPlayCurve: Curves.fastOutSlowIn,
-      enableInfiniteScroll: true,
-      autoPlayAnimationDuration: Duration(milliseconds: 800),
-      viewportFraction: 0.8,
-    ),
+Widget thunderSomeImage() {
+  return CarouselSlider(items: [
+    //1st Image of Slider
+    silderImage('assets/thundesome-image/thudersome-1.jpg'),
+    silderImage('assets/thundesome-image/thudersome-2.jpg'),
+    silderImage('assets/thundesome-image/thudersome-3.jpg'),
+    silderImage('assets/thundesome-image/thudersome-4.jpg'),
+    silderImage('assets/thundesome-image/thudersome-5.jpg'),
+  ], options: _options());
+}
+
+Image silderImage(String path) {
+  return Image.asset(
+    '${path}',
+    fit: BoxFit.cover,
+    height: 240,
+    width: 320,
   );
 }
 
-Widget import() {
-  return ListView(
-    children: [
-      CarouselSlider(
-        items: [
-          //1st Image of Slider
-          Container(
-            margin: EdgeInsets.all(6.0),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8.0),
-              image: DecorationImage(
-                image: AssetImage("images/cn.jpg"),
-                fit: BoxFit.fill,
-              ),
-            ),
-          ),
-
-          //2nd Image of Slider
-          Container(
-            margin: EdgeInsets.all(6.0),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8.0),
-              image: DecorationImage(
-                image: AssetImage("images/haze.png"),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-
-          //3rd Image of Slider
-          Container(
-            margin: EdgeInsets.all(6.0),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8.0),
-              image: DecorationImage(
-                image: AssetImage("images/haze.png"),
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-        ],
-
-        //Slider Container properties
-        options: CarouselOptions(
-          height: 180.0,
-          enlargeCenterPage: true,
-          autoPlay: true,
-          aspectRatio: 16 / 9,
-          autoPlayCurve: Curves.fastOutSlowIn,
-          enableInfiniteScroll: true,
-          autoPlayAnimationDuration: Duration(milliseconds: 800),
-          viewportFraction: 0.8,
-        ),
-      ),
-    ],
+CarouselOptions _options() {
+  return CarouselOptions(
+    height: 180.0,
+    enlargeCenterPage: true,
+    autoPlay: true,
+    aspectRatio: 16 / 9,
+    autoPlayCurve: Curves.fastOutSlowIn,
+    enableInfiniteScroll: true,
+    autoPlayAnimationDuration: Duration(milliseconds: 800),
+    viewportFraction: 0.8,
   );
 }
-
-
-
 
 /*
     Thunderstorms (200 to 232): 

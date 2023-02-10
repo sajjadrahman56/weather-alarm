@@ -1,12 +1,10 @@
+import 'package:alram_page/views/carefulMessageShow.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
 import '../model/weather_clint.dart';
 import '../model/weather_model.dart';
 import '../weather-views-widgtes/additonal_info.dart';
 import '../weather-views-widgtes/current_weather_get.dart';
-import 'carefulMessageShow.dart';
 
 // ignore: camel_case_types
 class copyMainFile extends StatefulWidget {

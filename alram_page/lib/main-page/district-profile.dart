@@ -50,13 +50,6 @@ class _DistrictGridPageState extends State<DistrictGridPage> {
                     width: 1000,
                     padding: const EdgeInsets.all(18),
                     alignment: Alignment.center,
-                    // decoration: const BoxDecoration(
-                    //   image: DecorationImage(
-                    //     image: AssetImage("images/haze.png"),
-                    //     fit: BoxFit.cover,
-                    //     repeat: ImageRepeat.noRepeat,
-                    //   ),
-                    // ),
                     color: (Colors.amber),
                     child: Text(
                       "Sylhet",
