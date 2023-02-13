@@ -44,17 +44,45 @@ class _DistrictGridPageState extends State<DistrictGridPage> {
               mainAxisSpacing: 40,
               maxCrossAxisExtent: 200.0,
               children: <Widget>[
+                // GestureDetector(
+                //   child: Container(
+                //     height: 100,
+                //     width: 1000,
+                //     padding: const EdgeInsets.all(18),
+                //     alignment: Alignment.center,
+                //     //color: (Colors.amber),
+
+                //     child: Text(
+                //       "Sylhet",
+                //       style: TextStyle(fontSize: 18),
+                //     ),
+                //   ),
+                //   onTap: () {
+                //     Get.to(() => copyMainFile(),
+                //         arguments: ["24.894930", "91.868706"]);
+                //   },
+                // ),
                 GestureDetector(
-                  child: Container(
-                    height: 100,
-                    width: 1000,
-                    padding: const EdgeInsets.all(18),
-                    alignment: Alignment.center,
-                    color: (Colors.amber),
-                    child: Text(
-                      "Sylhet",
-                      style: TextStyle(fontSize: 18),
-                    ),
+                  child: Column(
+                    children: [
+                      Container(
+                        height: 80,
+                        width: 80,
+                        padding: const EdgeInsets.all(8),
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage(
+                                "assets/thundesome-image/thudersome-1.jpg"),
+                            fit: BoxFit.cover,
+                            repeat: ImageRepeat.noRepeat,
+                          ),
+                        ),
+                      ),
+                      Text(
+                        "Sylhet",
+                        style: TextStyle(fontSize: 18),
+                      )
+                    ],
                   ),
                   onTap: () {
                     Get.to(() => copyMainFile(),
